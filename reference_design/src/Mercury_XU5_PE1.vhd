@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- Copyright (c) 2021 by Enclustra GmbH, Switzerland.
+-- Copyright (c) 2022 by Enclustra GmbH, Switzerland.
 --
 -- Permission is hereby granted, free of charge, to any person obtaining a copy of
 -- this hardware, software, firmware, and associated documentation files (the
@@ -36,7 +36,7 @@ entity Mercury_XU5_PE1 is
   
   port (
     
-    -- Anios_A
+    -- Anios A
     IOA_D0_P                       : inout   std_logic;
     IOA_D1_N                       : inout   std_logic;
     IOA_D2_P                       : inout   std_logic;
@@ -64,7 +64,7 @@ entity Mercury_XU5_PE1 is
     IOA_CLK1_N                     : inout   std_logic;
     IOA_CLK0_P                     : inout   std_logic;
     
-    -- Anios_B
+    -- Anios B
     IOB_D0_P                       : inout   std_logic;
     IOB_D1_N                       : inout   std_logic;
     IOB_D2_P                       : inout   std_logic;
@@ -83,8 +83,8 @@ entity Mercury_XU5_PE1 is
     IOB_D15_N                      : inout   std_logic;
     IOB_D16_SC0_DIP1_N             : inout   std_logic;
     IOB_D17_SC1_DIP2_N             : inout   std_logic;
-    IOB_D18_SC2_DIP3_N             : inout   std_logic; -- Only available on G1 modules
-    IOB_D19_SC3_DIP4_N             : inout   std_logic; -- Only available on G1 modules
+    IOB_D18_SC2_DIP3_N             : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOB_D19_SC3_DIP4_N             : inout   std_logic; -- Available on G1, No_MGT_routing modules
     IOB_D20_SC4_BTN0_N             : inout   std_logic;
     IOB_D21_SC5_BTN1_N             : inout   std_logic;
     IOB_D22_SC6_BTN2_N             : inout   std_logic;
@@ -92,7 +92,7 @@ entity Mercury_XU5_PE1 is
     IOB_CLK1_N                     : inout   std_logic;
     IOB_CLK0_P                     : inout   std_logic;
     
-    -- FMC0
+    -- FMC LPC Connector 0
     FMC_LA02_N                     : inout   std_logic;
     FMC_LA02_P                     : inout   std_logic;
     FMC_LA03_N                     : inout   std_logic;
@@ -166,46 +166,50 @@ entity Mercury_XU5_PE1 is
     FMC_CLK1_M2C_N                 : inout   std_logic;
     FMC_CLK1_M2C_P                 : inout   std_logic;
     
-    -- I2C_PL
-    I2C_SCL_PL                     : inout   std_logic;
-    I2C_SDA_PL                     : inout   std_logic;
+    -- PL I2C, shared with PS I2C
+    I2C_SCL                        : inout   std_logic;
+    I2C_SDA                        : inout   std_logic;
     
     -- IOC
-    IOC_D0_P                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D1_N                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D2_P                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D3_N                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D4_P                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D5_N                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D6_P                       : inout   std_logic; -- Only available on G1 modules
-    IOC_D7_N                       : inout   std_logic; -- Only available on G1 modules
+    IOC_D0_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D1_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D2_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D3_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D4_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D5_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D6_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOC_D7_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
     
     -- IOD
-    IOD_D0_P                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D1_N                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D2_P                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D3_N                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D4_P                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D5_N                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D6_P                       : inout   std_logic; -- Only available on G1 modules
-    IOD_D7_N                       : inout   std_logic; -- Only available on G1 modules
+    IOD_D0_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D1_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D2_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D3_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D4_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D5_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D6_P                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOD_D7_N                       : inout   std_logic; -- Available on G1, No_MGT_routing modules
     
     -- IOE
-    IOE_D0_LED0_N                  : inout   std_logic; -- Only available on G1 modules
-    IOE_D1_LED1_N                  : inout   std_logic; -- Only available on G1 modules
-    IOE_D2_LED2_N                  : inout   std_logic; -- Only available on G1 modules
-    IOE_D3_LED3_N                  : inout   std_logic; -- Only available on G1 modules
+    IOE_D0_LED0_N                  : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOE_D1_LED1_N                  : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOE_D2_LED2_N                  : inout   std_logic; -- Available on G1, No_MGT_routing modules
+    IOE_D3_LED3_N                  : inout   std_logic; -- Available on G1, No_MGT_routing modules
     
     -- LED
-    LED1_N                         : out     std_logic;
-    LED2_N                         : out     std_logic;
-    LED3_N                         : out     std_logic;
+    LED1_N_PL                      : out     std_logic;
+    LED2_N_PL                      : out     std_logic;
+    LED3_N_PL                      : out     std_logic;
     
-    -- PL_100_MHz_Oscillator
+    -- PE1 SI5338 CLK3
+    OSC_N                          : in      std_logic;
+    OSC_P                          : in      std_logic;
+    
+    -- PL 100 MHz Oscillator
     CLK100_PL_N                    : in      std_logic;
     CLK100_PL_P                    : in      std_logic;
     
-    -- PL_DDR4_Memory
+    -- PL DDR4 Memory
     DDR4PL_ACT_N                   : out     std_logic;
     DDR4PL_RST_N                   : out     std_logic;
     DDR4PL_BA                      : out     std_logic_vector(1 downto 0);
@@ -221,7 +225,7 @@ entity Mercury_XU5_PE1 is
     DDR4PL_DQS_N                   : inout   std_logic_vector(1 downto 0);
     DDR4PL_DQS_P                   : inout   std_logic_vector(1 downto 0);
     
-    -- PL_Gigabit_Ethernet
+    -- PL Gigabit Ethernet
     ETH1_MDC                       : out     std_logic;
     ETH1_RXCLK                     : in      std_logic;
     ETH1_TXCLK                     : out     std_logic;
@@ -245,7 +249,13 @@ architecture rtl of Mercury_XU5_PE1 is
       Clk100              : out    std_logic;
       Clk50               : out    std_logic;
       Rst_N               : out    std_logic;
-      LED_N               : out    std_logic_vector(1 downto 0);
+      IIC_sda_i           : in     std_logic;
+      IIC_sda_o           : out    std_logic;
+      IIC_sda_t           : out    std_logic;
+      IIC_scl_i           : in     std_logic;
+      IIC_scl_o           : out    std_logic;
+      IIC_scl_t           : out    std_logic;
+      LED_N_PL            : out    std_logic_vector(1 downto 0);
       C0_SYS_CLK_clk_n    : in     std_logic;
       C0_SYS_CLK_clk_p    : in     std_logic;
       C0_DDR4_act_n       : out    std_logic;
@@ -285,13 +295,14 @@ architecture rtl of Mercury_XU5_PE1 is
     );
     
   end component Mercury_XU5;
+  
   component IOBUF is
-  port (
-    I : in STD_LOGIC;
-    O : out STD_LOGIC;
-    T : in STD_LOGIC;
-    IO : inout STD_LOGIC
-  );
+    port (
+      I : in STD_LOGIC;
+      O : out STD_LOGIC;
+      T : in STD_LOGIC;
+      IO : inout STD_LOGIC
+    );
   end component IOBUF;
   
   component Mercury_XU5_GMII2RGMII is
@@ -333,7 +344,13 @@ architecture rtl of Mercury_XU5_PE1 is
   signal Clk100           : std_logic;
   signal Clk50            : std_logic;
   signal Rst_N            : std_logic;
-  signal LED_N            : std_logic_vector(1 downto 0);
+  signal IIC_sda_i        : std_logic;
+  signal IIC_sda_o        : std_logic;
+  signal IIC_sda_t        : std_logic;
+  signal IIC_scl_i        : std_logic;
+  signal IIC_scl_o        : std_logic;
+  signal IIC_scl_t        : std_logic;
+  signal LED_N_PL         : std_logic_vector(1 downto 0);
   signal MDIO_mdio_i      : std_logic;
   signal MDIO_mdio_o      : std_logic;
   signal MDIO_mdio_t      : std_logic;
@@ -365,7 +382,13 @@ begin
       Clk100               => Clk100,
       Clk50                => Clk50,
       Rst_N                => Rst_N,
-      LED_N                => LED_N,
+      IIC_sda_i            => IIC_sda_i,
+      IIC_sda_o            => IIC_sda_o,
+      IIC_sda_t            => IIC_sda_t,
+      IIC_scl_i            => IIC_scl_i,
+      IIC_scl_o            => IIC_scl_o,
+      IIC_scl_t            => IIC_scl_t,
+      LED_N_PL             => LED_N_PL,
       C0_SYS_CLK_clk_n     => CLK100_PL_N,
       C0_SYS_CLK_clk_p     => CLK100_PL_P,
       C0_DDR4_act_n        => DDR4PL_ACT_N,
@@ -404,6 +427,22 @@ begin
       GMII_txd             => GMII_txd
     );
   
+  IIC_scl_iobuf: component IOBUF
+    port map (
+      I => IIC_scl_o,
+      IO => I2C_SCL,
+      O => IIC_scl_i,
+      T => IIC_scl_t
+    );
+  
+  IIC_sda_iobuf: component IOBUF
+    port map (
+      I => IIC_sda_o,
+      IO => I2C_SDA,
+      O => IIC_sda_i,
+      T => IIC_sda_t
+    );
+  
   process (Clk50)
   begin
     if rising_edge (Clk50) then
@@ -414,9 +453,10 @@ begin
       end if;
     end if;
   end process;
-  Led1_N <= '0' when LedCount(LedCount'high) = '0' else 'Z';
-  Led2_N <= '0' when LED_N(0) = '0' else 'Z';
-  Led3_N <= '0' when LED_N(1) = '0' else 'Z';
+  LED1_N_PL <= '0' when LedCount(LedCount'high) = '0' else 'Z';
+  LED2_N_PL <= '0' when LED_N_PL(0) = '0' else 'Z';
+  LED3_N_PL <= '0' when LED_N_PL(1) = '0' else 'Z';
+  
   MDIO_mdio_iobuf: component IOBUF
     port map (
       I => MDIO_mdio_o,
@@ -458,5 +498,5 @@ begin
     );
   
   ETH1_RESET_N        <= ETH_resetn;
-
+  
 end rtl;
