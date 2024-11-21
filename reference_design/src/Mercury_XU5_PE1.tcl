@@ -1,5 +1,5 @@
-# ----------------------------------------------------------------------------------
-# Copyright (c) 2022 by Enclustra GmbH, Switzerland.
+# ----------------------------------------------------------------------------------------------------
+# Copyright (c) 2024 by Enclustra GmbH, Switzerland.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this hardware, software, firmware, and associated documentation files (the
@@ -17,7 +17,7 @@
 # HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT.
-# ----------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
 
 set_property BITSTREAM.CONFIG.OVERTEMPSHUTDOWN ENABLE [current_design]
  
@@ -189,6 +189,16 @@ if {$MGT_routing == "No_MGT_routing"} {
   set_property -dict {PACKAGE_PIN U8    IOSTANDARD LVCMOS18  } [get_ports {IOC_D6_P}]
   set_property -dict {PACKAGE_PIN V8    IOSTANDARD LVCMOS18  } [get_ports {IOC_D7_N}]
 }
+if {$MGT_routing == "Standard"} {
+  # set_property PACKAGE_PIN W4    [get_ports {IOC_D0_P}] # GTH
+  # set_property PACKAGE_PIN W3    [get_ports {IOC_D1_N}] # GTH
+  # set_property PACKAGE_PIN Y2    [get_ports {IOC_D2_P}] # GTH
+  # set_property PACKAGE_PIN Y1    [get_ports {IOC_D3_N}] # GTH
+  # set_property PACKAGE_PIN U4    [get_ports {IOC_D4_P}] # GTH
+  # set_property PACKAGE_PIN U3    [get_ports {IOC_D5_N}] # GTH
+  # set_property PACKAGE_PIN V2    [get_ports {IOC_D6_P}] # GTH
+  # set_property PACKAGE_PIN V1    [get_ports {IOC_D7_N}] # GTH
+}
 
 # IOD
 if {$MGT_routing == "G1"} {
@@ -211,8 +221,18 @@ if {$MGT_routing == "No_MGT_routing"} {
   set_property -dict {PACKAGE_PIN R7    IOSTANDARD LVCMOS18  } [get_ports {IOD_D6_P}]
   set_property -dict {PACKAGE_PIN T7    IOSTANDARD LVCMOS18  } [get_ports {IOD_D7_N}]
 }
+if {$MGT_routing == "Standard"} {
+  # set_property PACKAGE_PIN R4    [get_ports {IOD_D0_P}] # GTH
+  # set_property PACKAGE_PIN R3    [get_ports {IOD_D1_N}] # GTH
+  # set_property PACKAGE_PIN T2    [get_ports {IOD_D2_P}] # GTH
+  # set_property PACKAGE_PIN T1    [get_ports {IOD_D3_N}] # GTH
+  # set_property PACKAGE_PIN N4    [get_ports {IOD_D4_P}] # GTH
+  # set_property PACKAGE_PIN N3    [get_ports {IOD_D5_N}] # GTH
+  # set_property PACKAGE_PIN P2    [get_ports {IOD_D6_P}] # GTH
+  # set_property PACKAGE_PIN P1    [get_ports {IOD_D7_N}] # GTH
+}
 
-# IOE
+# IOE User LEDs
 if {$MGT_routing == "G1"} {
   set_property -dict {PACKAGE_PIN D4    IOSTANDARD LVCMOS18  } [get_ports {IOE_D0_LED0_N}]
   set_property -dict {PACKAGE_PIN C4    IOSTANDARD LVCMOS18  } [get_ports {IOE_D1_LED1_N}]
@@ -225,15 +245,35 @@ if {$MGT_routing == "No_MGT_routing"} {
   set_property -dict {PACKAGE_PIN G1    IOSTANDARD LVCMOS18  } [get_ports {IOE_D2_LED2_N}]
   set_property -dict {PACKAGE_PIN F1    IOSTANDARD LVCMOS18  } [get_ports {IOE_D3_LED3_N}]
 }
+if {$MGT_routing == "Standard"} {
+  # set_property PACKAGE_PIN Y6    [get_ports {IOE_D0_LED0_N}] # GTH
+  # set_property PACKAGE_PIN Y5    [get_ports {IOE_D1_LED1_N}] # GTH
+}
 
 # LED
 set_property -dict {PACKAGE_PIN H2    IOSTANDARD LVCMOS18  } [get_ports {LED1_N_PL}]
 set_property -dict {PACKAGE_PIN P9    IOSTANDARD LVCMOS18  } [get_ports {LED2_N_PL}]
 set_property -dict {PACKAGE_PIN K5    IOSTANDARD LVCMOS18  } [get_ports {LED3_N_PL}]
 
+# PE1 SI5338 CLK0
+if {$MGT_routing == "G1"} {
+  # set_property PACKAGE_PIN Y5    [get_ports {MGT_REFCLK0_N}] # GTH
+  # set_property PACKAGE_PIN Y6    [get_ports {MGT_REFCLK0_P}] # GTH
+}
+
+# PE1 SI5338 CLK1
+if {$MGT_routing == "G1"} {
+  # set_property PACKAGE_PIN V5    [get_ports {MGT_REFCLK1_N}] # GTH
+  # set_property PACKAGE_PIN V6    [get_ports {MGT_REFCLK1_P}] # GTH
+}
+if {$MGT_routing == "Standard"} {
+  # set_property PACKAGE_PIN V5    [get_ports {MGT_REFCLK1_N}] # GTH
+  # set_property PACKAGE_PIN V6    [get_ports {MGT_REFCLK1_P}] # GTH
+}
+
 # PE1 SI5338 CLK3
-set_property -dict {PACKAGE_PIN AF12  IOSTANDARD LVCMOS18  } [get_ports {OSC_N}]
-set_property -dict {PACKAGE_PIN AE12  IOSTANDARD LVCMOS18  } [get_ports {OSC_P}]
+set_property -dict {PACKAGE_PIN AF12  IOSTANDARD DIFF_SSTL18_I} [get_ports {OSC_N}]
+set_property -dict {PACKAGE_PIN AE12  IOSTANDARD DIFF_SSTL18_I} [get_ports {OSC_P}]
 
 # PL 100 MHz Oscillator
 set_property -dict {PACKAGE_PIN AD4   IOSTANDARD DIFF_SSTL12_DCI} [get_ports {CLK100_PL_N}]
